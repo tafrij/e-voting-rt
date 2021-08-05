@@ -10,9 +10,9 @@
 
             <?= form_open_multipart('user/edit'); ?>
             <div class="form-group row">
-                <label for="email" class="col-sm-2 col-form-label">Email</label>
+                <label for="username" class="col-sm-2 col-form-label">username</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="email" name="email" value="<?= $user['email']; ?>" readonly>
+                    <input type="text" class="form-control" id="username" name="username" value="<?= $user['username']; ?>" readonly>
                 </div>
             </div>
             <div class="form-group row">
@@ -27,7 +27,7 @@
                 <div class="col-sm-10">
                     <div class="row">
                         <div class="col-sm-3">
-                            <img src="<?= base_url('assets/img/profile/') . $user['image']; ?>" class="img-thumbnail">
+                            <img src="<?= 'http://localhost/e-voting-rt/assets/img/profile/' . $user['image']; ?>" class="img-thumbnail">
                         </div>
                         <div class="col-sm-9">
                             <div class="custom-file">

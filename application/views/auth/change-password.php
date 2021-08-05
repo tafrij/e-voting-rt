@@ -13,7 +13,7 @@
                             <div class="p-5">
                                 <div class="text-center">
                                     <h1 class="h4 text-gray-900">Change your password for</h1>
-                                    <h5 class="mb-4"><?= $this->session->userdata('reset_email'); ?></h5>
+                                    <h5 class="mb-4"><?= $this->session->userdata('reset_username'); ?></h5>
                                 </div>
 
                                 <?= $this->session->flashdata('message'); ?>

@@ -12,7 +12,7 @@ class User extends CI_Controller
     public function index()
     {
         $data['title'] = 'My Profile';
-        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['user'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
@@ -25,7 +25,7 @@ class User extends CI_Controller
     public function edit()
     {
         $data['title'] = 'Edit Profile';
-        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['user'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
 
         $this->form_validation->set_rules('name', 'Full Name', 'required|trim');
 
@@ -37,7 +37,7 @@ class User extends CI_Controller
             $this->load->view('templates/footer');
         } else {
             $name = $this->input->post('name');
-            $email = $this->input->post('email');
+            $username = $this->input->post('username');
 
             // cek jika ada gambar yang akan diupload
             $upload_image = $_FILES['image']['name'];
@@ -62,7 +62,7 @@ class User extends CI_Controller
             }
 
             $this->db->set('name', $name);
-            $this->db->where('email', $email);
+            $this->db->where('username', $username);
             $this->db->update('user');
 
             $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Your profile has been updated!</div>');
@@ -74,7 +74,7 @@ class User extends CI_Controller
     public function changePassword()
     {
         $data['title'] = 'Change Password';
-        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['user'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
 
         $this->form_validation->set_rules('current_password', 'Current Password', 'required|trim');
         $this->form_validation->set_rules('new_password1', 'New Password', 'required|trim|min_length[3]|matches[new_password2]');
@@ -101,7 +101,7 @@ class User extends CI_Controller
                     $password_hash = password_hash($new_password, PASSWORD_DEFAULT);
 
                     $this->db->set('password', $password_hash);
-                    $this->db->where('email', $this->session->userdata('email'));
+                    $this->db->where('username', $this->session->userdata('username'));
                     $this->db->update('user');
 
                     $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Password changed!</div>');
@@ -110,4 +110,14 @@ class User extends CI_Controller
             }
         }
     }
+
+    public function detailUser()
+    {
+        $this->db->select('*');
+        $this->db->from('user');
+        $this->db->join('user_detail', 'user_detail.user_id=user.id');
+        $detail_user = $this->db->get();
+    }
+
+    public function kelolaUser()
 }
