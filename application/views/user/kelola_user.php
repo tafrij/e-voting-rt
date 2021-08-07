@@ -1,5 +1,5 @@
 <!-- Begin Page Content -->
-<div class="container-fluid">
+<div class="container-fluid" style="font-size:13px;">
     <div class="row">
         <div class="col-lg-12">
             <div class="card">
@@ -45,8 +45,8 @@
                                     <td class="text-center">
                                         <div class="btn-group" role="group">
                                             <a href="<?= base_url('detail-user/') . $item['id'] ?>" class="btn btn-sm btn-primary">Detail</a>
-                                            <button type="button" class="btn btn-sm btn-success">Edit</button>
-                                            <button type="button" class="btn btn-sm btn-danger">Hapus</button>
+                                            <a href="<?= base_url('edit-user/') . $item['id'] ?>" class="btn btn-sm btn-success">Edit</a>
+                                            <a href="<?= base_url('hapus-user/') . $item['id'] ?>" class="btn btn-sm btn-danger">Hapus</a>
                                         </div>
                                     </td>
                                 </tr>
@@ -63,13 +63,7 @@
 <div class="modal fade" id="newMenuModal" tabindex="-1" role="dialog" aria-labelledby="newMenuModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="newMenuModalLabel">Tambah User</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <form action="<?= base_url('menu'); ?>" method="post">
+            <form action="<?= base_url('tambah-user'); ?>" method="post">
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-md-6">
@@ -93,12 +87,24 @@
                                 <label>RW</label>
                                 <input type="number" class="form-control" name="rw" placeholder="0">
                             </div>
+                            <div class="form-group">
+                                <label>Role</label>
+                                <select class="form-control" name="role_id" id="exampleFormControlSelect1">
+                                    <option>** Pilih Role **</option>
+                                    <option value="2">User</option>
+                                    <option value="3">Panitia</option>
+                                </select>
+                            </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
+                                <label>Nama Lengkap</label>
+                                <input type="text" class="form-control" name="nama_lengkap" placeholder="Jhon">
+                            </div>
+                            <div class="form-group">
                                 <label>Jenis Kelamin</label>
                                 <select class="form-control" name="jenis_kelamin" id="exampleFormControlSelect1">
-                                <option>** Pilih Jenis Kelamin **</option>
+                                    <option>** Pilih Jenis Kelamin **</option>
                                     <option value="laki-laki">Laki-Laki</option>
                                     <option value="perempuan">Perempuan</option>
                                 </select>
@@ -110,8 +116,8 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Add</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                        <button type="submit" class="btn btn-primary">Tambah</button>
                     </div>
                 </div>
             </form>
