@@ -8,12 +8,12 @@
                             <h5><?= $title ?></h5>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-md-2">
-                            <img src="<?= 'http://localhost/e-voting-rt/assets/img/profile/' . $user_detail['image']; ?>" class="card-img">
-                        </div>
-                        <div class="col-md-5">
-                        <form action="<?= base_url('edit-user/') . $user_detail['id']; ?>" method="post" enctype="multipart/form-data">
+                    <form action="<?= base_url('edit-user/') . $user_detail['id']; ?>" method="post" enctype="multipart/form-data">
+                        <div class="row">
+                            <div class="col-md-2">
+                                <img src="<?= 'http://localhost/e-voting-rt/assets/img/profile/' . $user_detail['image']; ?>" class="card-img">
+                            </div>
+                            <div class="col-md-5">
                                 <div class="form-group">
                                     <label>NIK</label>
                                     <input type="number" class="form-control" name="nik" value="<?= $user_detail['nik'] ?>">
@@ -38,7 +38,7 @@
                                     <div class="col-5">
                                         <div class="form-group">
                                             <label>RT</label>
-                                            <input type="number" class="form-control" name="rt" value="<?= $user_detail['rt']?>">
+                                            <input type="number" class="form-control" name="rt" value="<?= $user_detail['rt'] ?>">
                                             <?= form_error('rt', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                     </div>
@@ -68,11 +68,11 @@
                                     <textarea name="alamat" rows="10" class="form-control"><?= $user_detail['alamat'] ?></textarea>
                                     <?= form_error('alamat', '<small class="text-danger pl-3">', '</small>'); ?>
                                 </div>
-                                <button type="submit" class="btn btn-sm btn-success mr-2 float-right">Edit</button>
+                                <button type="submit" class="btn btn-success mr-2">Edit</button>
                             </div>
-                            <button onclick="window.history.back()" class="btn btn-sm btn-primary ml-2" type="button">Kembali</button>
-                        </form>
-                    </div>
+                        </div>
+                    </form>
+                    <a href="<?= base_url('kelola-user') ?>" class="btn btn-sm btn-primary">Kembali</a>
                 </div>
             </div>
         </div>

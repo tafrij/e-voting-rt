@@ -10,3 +10,10 @@ $route['detail-user/(:any)'] = 'User/detailUser/$1';
 $route['tambah-user'] = 'User/tambahUser';
 $route['edit-user/(:any)'] = 'User/editUser/$1';
 $route['hapus-user/(:any)'] = 'User/hapusUser/$1';
+
+$route['kandidat'] = 'User/kelolaKandidat';
+$route['tambah-kandidat'] = 'User/tambahKandidat';
+$route['edit-kandidat/(:any)'] = 'User/editKandidat/$1/';
+$route['detail-kandidat/(:any)'] = 'User/detailKandidat/$1/';
+$route['hapus-kandidat/(:any)'] = 'User/deleteKandidat/$1/';
+$route['pemilihan'] = 'Vote/index';

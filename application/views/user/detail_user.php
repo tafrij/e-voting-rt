@@ -53,7 +53,7 @@
                             </div>
                         </div>
                     </div>
-                    <button onclick="window.history.back()" class="btn btn-sm btn-primary" type="button">Kembali</button>
+                    <a href="<?= base_url('kelola-user') ?>" class="btn btn-sm btn-primary">Kembali</a>
                 </div>
             </div>
         </div>

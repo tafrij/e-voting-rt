@@ -38,7 +38,7 @@ class User extends CI_Controller
             $username = $this->input->post('username');
             $upload_image = $_FILES['image']['name'];
             if ($upload_image) {
-                $config['allowed_types'] = 'gif|jpg|png';
+                $config['allowed_types'] = 'gif|jpg|png|jpeg';
                 $config['max_size']      = '2048';
                 $config['upload_path'] = './assets/img/profile/';
                 $this->load->library('upload', $config);
@@ -122,7 +122,7 @@ class User extends CI_Controller
         $detail_user = $this->db->get();
         $data['user_detail'] = $detail_user->row_array();
         $data['user'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
-        $data['title'] = '#ID User ' . $id;
+        $data['title'] = 'Detail User';
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
@@ -231,5 +231,126 @@ class User extends CI_Controller
         <span aria-hidden="true">&times;</span>
       </button></div>');
         redirect('kelola-user');
+    }
+
+    public function kelolaKandidat()
+    {
+        $this->db->select('*');
+        $this->db->from('kandidat');
+        $this->db->order_by('id', 'desc');
+        $detail_user = $this->db->get();
+        $data['kandidat'] = $detail_user->result_array();
+        $data['user'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
+        $data['title'] = 'Kelola Kandidat';
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/topbar', $data);
+        $this->load->view('user/kelola_kandidat', $data);
+        $this->load->view('templates/footer');
+    }
+
+    public function tambahKandidat()
+    {
+        $data = [
+            'no_kandidat' => $this->input->post('no_kandidat'),
+            'nama' => $this->input->post('nama'),
+            'visi' => $this->input->post('visi'),
+            'misi' => $this->input->post('misi'),
+        ];
+        $upload_image = $_FILES['image']['name'];
+        if ($upload_image) {
+            $config['allowed_types'] = 'gif|jpg|png|jpeg';
+            $config['max_size']      = '5048';
+            $config['upload_path'] = './assets/img/';
+            $this->load->library('upload', $config);
+            if ($this->upload->do_upload('image')) {
+                $data['image'] = $this->upload->data('file_name');
+            } else {
+                echo $this->upload->dispay_errors();
+            }
+        }
+        $this->db->insert('kandidat', $data);
+        $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Data berhasil ditambah! <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button></div>');
+        redirect('kandidat');
+    }
+
+    public function editKandidat($id)
+    {
+        $this->db->select('*');
+        $this->db->from('kandidat');
+        $this->db->where('kandidat.id', $id);
+        $detail_user = $this->db->get();
+        $data['kandidat'] = $detail_user->row_array();
+        $data['user'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
+        $data['title'] = 'Edit Kandidat';
+        $this->form_validation->set_rules('no_kandidat', 'No Kandidat', 'required|trim');
+        $this->form_validation->set_rules('nama', 'Nama', 'required|trim');
+        $this->form_validation->set_rules('visi', 'Visi', 'required|trim');
+        $this->form_validation->set_rules('misi', 'Misi', 'required|trim');
+        if ($this->form_validation->run() == false) {
+            $this->load->view('templates/header', $data);
+            $this->load->view('templates/sidebar', $data);
+            $this->load->view('templates/topbar', $data);
+            $this->load->view('user/edit_kandidat', $data);
+            $this->load->view('templates/footer');
+        } else {
+            $data = [
+                'no_kandidat' => $this->input->post('no_kandidat'),
+                'nama' => $this->input->post('nama'),
+                'visi' => $this->input->post('visi'),
+                'misi' => $this->input->post('misi'),
+            ];
+            $upload_image = $_FILES['image']['name'];
+            if ($upload_image) {
+                $config['allowed_types'] = 'gif|jpg|png|jpeg';
+                $config['max_size']      = '5048';
+                $config['upload_path'] = './assets/img/';
+                $this->load->library('upload', $config);
+                if ($this->upload->do_upload('image')) {
+                    $old_image = $data['kandidat']['image'];
+                    if ($old_image != 'default.jpg') {
+                        unlink(FCPATH . 'assets/img/' . $old_image);
+                    }
+                    $data['image'] = $this->upload->data('file_name');
+                    $this->db->set($data);
+                    $this->db->where('id', $id);
+                    $this->db->update('kandidat');
+                } else {
+                    echo $this->upload->dispay_errors();
+                }
+            }
+            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Data berhasil diubah! <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button></div>');
+            redirect('detail-kandidat/' . $id);
+        }
+    }
+
+    public function detailKandidat($id)
+    {
+        $this->db->select('*');
+        $this->db->from('kandidat');
+        $this->db->where('kandidat.id', $id);
+        $detail_user = $this->db->get();
+        $data['kandidat'] = $detail_user->row_array();
+        $data['user'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
+        $data['title'] = '#ID Kandidat ' . $id;
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/topbar', $data);
+        $this->load->view('user/detail_kandidat', $data);
+        $this->load->view('templates/footer');
+    }
+
+    public function deleteKandidat($id)
+    {
+        $this->db->where('id', $id);
+        $this->db->delete('kandidat');
+        $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Data berhasil dihapus! <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button></div>');
+        redirect('kandidat');
     }
 }
