@@ -1,12 +1,12 @@
         <!-- Sidebar -->
-        <ul class="navbar-nav bg-grey-100 sidebar sidebar-light accordion" id="accordionSidebar">
+        <ul class="navbar-nav bg-grey-100 sidebar sidebar-light accordion shadow" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
-                <div class="sidebar-brand-icon rotate-n-15">
-                    <i class="fas fa-code"></i>
+                <div class="sidebar-brand-icon">
+                    <img src="http://localhost/e-voting-rt/assets/img/logo.png" width="40" alt="">
                 </div>
-                <div class="sidebar-brand-text mx-3">WPU Admin</div>
+                <div class="sidebar-brand-text mx-3">E-Voting</div>
             </a>
 
             <!-- Divider -->
@@ -40,6 +40,7 @@
                                  ON `user_sub_menu`.`menu_id` = `user_menu`.`id`
                               WHERE `user_sub_menu`.`menu_id` = $menuId
                                 AND `user_sub_menu`.`is_active` = 1
+                                ORDER BY `user_sub_menu`.`id` DESC
                         ";
             $subMenu = $this->db->query($querySubMenu)->result_array();
             ?>
@@ -56,7 +57,7 @@
             </li>
             <?php endforeach; ?>
 
-            <hr class="sidebar-divider mt-3">
+            <br>
 
             <?php endforeach; ?>
 

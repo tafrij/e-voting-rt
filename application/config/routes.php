@@ -4,7 +4,5 @@ defined('BASEPATH') or exit('No direct script access allowed');
 $route['default_controller'] = 'welcome';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = false;
-
-$route['admin'] = 'Auth';
-// $route['login'] = 'Auth/login';
-$route['detail_user'] = 'User/detailUser';
+$route['kelola-user'] = 'User/kelolaUser';
+$route['detail-user/(:any)'] = 'User/detailUser/$1';

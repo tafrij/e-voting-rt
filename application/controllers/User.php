@@ -6,7 +6,9 @@ class User extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        is_logged_in();
+        if(!$this->session->userdata('username')){
+            redirect('auth');
+        }
     }
 
     public function index()
@@ -111,13 +113,36 @@ class User extends CI_Controller
         }
     }
 
-    public function detailUser()
-    {
+    public function kelolaUser()
+    {   
         $this->db->select('*');
         $this->db->from('user');
         $this->db->join('user_detail', 'user_detail.user_id=user.id');
         $detail_user = $this->db->get();
+        $data['user_detail'] = $detail_user->result_array();
+        $data['user'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
+        $data['title'] = 'Kelola User';
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/topbar', $data);
+        $this->load->view('user/kelola_user', $data);
+        $this->load->view('templates/footer');
     }
 
-    public function kelolaUser()
+    public function detailUser($id)
+    {
+        $this->db->select('*');
+        $this->db->from('user');
+        $this->db->join('user_detail', 'user_detail.user_id=user.id');
+        $this->db->where('user.id', $id);
+        $detail_user = $this->db->get();
+        $data['user_detail'] = $detail_user->row_array();
+        $data['user'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
+        $data['title'] = '#ID User ' . $id;
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/topbar', $data);
+        $this->load->view('user/detail_user', $data);
+        $this->load->view('templates/footer');
+    }
 }
