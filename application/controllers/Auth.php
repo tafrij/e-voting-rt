@@ -85,7 +85,7 @@ class Auth extends CI_Controller
 
     public function loginUser()
     {
-        if($this->session->userdata('nik')){
+        if ($this->session->userdata('nik')) {
             redirect('welcome');
         }
         $this->form_validation->set_rules('nik', 'NIK', 'required');
@@ -108,10 +108,35 @@ class Auth extends CI_Controller
         }
     }
 
-    public function logoutUser()
+    // login user/warga
+    public function userLogin()
+    {
+        $this->form_validation->set_rules('nik', 'NIK', 'trim|required');
+        if ($this->form_validation->run() == false) {
+            $data['title'] = 'User Login';
+            $this->load->view('templates/user_login_header', $data);
+            $this->load->view('user/login');
+            $this->load->view('templates/home_footer');
+        } else {
+            $nik = $this->input->post('nik');
+            $user = $this->db->get_where('user_detail', ['nik' => $nik])->row_array();
+            if ($user) {
+                    $data = [
+                        'nik' => $user['nik']
+                    ];
+                    $this->session->set_userdata($data);
+                    redirect('home');
+            } else {
+                $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">NIK Belum terdafat di sistem, hubungi panitia untuk mendaftarkan nik anda!</div>');
+                redirect('user-login');
+            }
+        }
+    }
+
+    public function userLogout()
     {
         $this->session->unset_userdata('nik');
         $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Terima kasih :)</div>');
-        redirect('welcome');
+        redirect('home');
     }
 }

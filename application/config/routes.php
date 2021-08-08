@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-$route['default_controller'] = 'welcome';
+$route['default_controller'] = 'home';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = false;
 
@@ -17,3 +17,8 @@ $route['edit-kandidat/(:any)'] = 'User/editKandidat/$1/';
 $route['detail-kandidat/(:any)'] = 'User/detailKandidat/$1/';
 $route['hapus-kandidat/(:any)'] = 'User/deleteKandidat/$1/';
 $route['pemilihan'] = 'Vote/index';
+
+$route['user-login'] = 'Auth/userLogin';
+$route['user-logout'] = 'Auth/userLogout';
+
+$route['vote-kandidat/(:any)'] = 'Vote/voteKandidat/$1';

@@ -7,8 +7,8 @@
                     <h1 class="h5"><?= $title; ?></h1>
                     <div class="row">
                         <div class="col-12">
-                            <table class="table table-hover table-bordered" id="dataTable">
-                                <thead>
+                            <table class="table table-hover table-borderless table-striped" id="dataTable">
+                                <thead class="thead-light">
                                     <tr>
                                         <th scope="col">#</th>
                                         <th scope="col">Nama</th>
@@ -45,7 +45,23 @@
         <div class="col-4">
             <div class="card shadow">
                 <div class="card-body">
-                    <h1 class="h5">Status Vote</h1>
+                    <div class="row">
+                        <div class="col-7">
+                            <h1 class="h5">Status Vote</h1>
+                        </div>
+                        <div class="col-5">
+                            <div class="float-right">
+                                <span class="mr-3">
+                                    <span class="badge badge-pill badge-danger mr-1"><i class="fas fa-times"></i></span>
+                                    <?= $count_vote_x['vote_x'];  ?>
+                                </span>
+                                <span>
+                                    <span class="badge badge-pill badge-success mr-1"><i class="fas fa-check"></i></span>
+                                    <?= $count_vote_o['vote_o'];  ?>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
                     <div class="table-responsive">
                         <table class="table table-hover table-borderless" style="max-height: 500px; overflow:auto; display:inline-block; ">
                             <thead>

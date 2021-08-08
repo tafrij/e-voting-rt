@@ -14,8 +14,8 @@
                             <a href="" class="btn btn-sm btn-primary mb-3 float-right" data-toggle="modal" data-target="#newMenuModal">Tambah User</a>
                         </div>
                     </div>
-                    <table class="table table-hover table-bordered" id="dataTable">
-                        <thead>
+                    <table class="table table-hover table- table-striped" id="dataTable">
+                        <thead class="thead-light">
                             <tr>
                                 <th scope="col">#</th>
                                 <th scope="col">No Kandidat</th>
@@ -31,7 +31,10 @@
                                 <tr>
                                     <th scope="row"><?= $i; ?></th>
                                     <td><?= $item['no_kandidat']; ?></td>
-                                    <td><?= $item['nama']; ?></td>
+                                    <td>
+                                    <img src="<?= 'http://localhost/e-voting-rt/assets/img//' . $item['image']; ?>" class="rounded-circle img-profile" width="30px">
+                                    <?= $item['nama']; ?>
+                                    </td>
                                     <td><?= $item['visi']; ?></td>
                                     <td><?= $item['misi']; ?></td>
                                     <td class="text-center">

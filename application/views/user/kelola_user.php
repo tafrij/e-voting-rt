@@ -14,8 +14,8 @@
                             <a href="" class="btn btn-sm btn-primary mb-3 float-right" data-toggle="modal" data-target="#newMenuModal">Tambah User</a>
                         </div>
                     </div>
-                    <table class="table table-hover table-bordered" id="dataTable">
-                        <thead>
+                    <table class="table table-hover table-borderless table-striped" id="dataTable">
+                        <thead class="thead-light">
                             <tr>
                                 <th scope="col">#</th>
                                 <th scope="col">Nik</th>
@@ -90,9 +90,8 @@
                             <div class="form-group">
                                 <label>Role</label>
                                 <select class="form-control" name="role_id" id="exampleFormControlSelect1">
-                                    <option>** Pilih Role **</option>
                                     <option value="2">User</option>
-                                    <option value="3">Panitia</option>
+                                    <!-- <option value="3">Panitia</option> -->
                                 </select>
                             </div>
                         </div>
@@ -104,7 +103,7 @@
                             <div class="form-group">
                                 <label>Jenis Kelamin</label>
                                 <select class="form-control" name="jenis_kelamin" id="exampleFormControlSelect1">
-                                    <option>** Pilih Jenis Kelamin **</option>
+                                    <option disabled selected>** Pilih Jenis Kelamin **</option>
                                     <option value="laki-laki">Laki-Laki</option>
                                     <option value="perempuan">Perempuan</option>
                                 </select>
