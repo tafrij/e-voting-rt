@@ -20,6 +20,11 @@ class Vote extends CI_Controller
 
 	public function voteKandidat($id)
 	{
-		
-	}
+		$user = $this->db->get_where('user_detail', ['nik' => $this->session->userdata('nik')])->row_array();
+		$periode = date('Y');
+		$this->db->insert('vote', ['user_id' => $user['user_id'], 'pilihan' => $id, 'periode' => $periode]);
+		$this->db->set(['vote_status' => 1, 'waktu_pemilihan' => date('Y-m-d H:i:s')]);
+		$this->db->where('user_id', $user['user_id']);
+		$this->db->update('user_detail');
+ 	}
 }
