@@ -26,11 +26,11 @@
                                             <td><?= $item['no_kandidat'] . '-' . $item['nama']; ?></td>
                                             <td><?= $item['periode']; ?></td>
                                             <td class="text-center">
-                                                <div class="btn-group" role="group">
+                                                <!-- <div class="btn-group" role="group">
                                                     <a href="<?= base_url('detail-user/') . $item['id'] ?>" class="btn btn-sm btn-primary">Detail</a>
                                                     <a href="<?= base_url('edit-user/') . $item['id'] ?>" class="btn btn-sm btn-success">Edit</a>
                                                     <a href="<?= base_url('hapus-user/') . $item['id'] ?>" class="btn btn-sm btn-danger">Hapus</a>
-                                                </div>
+                                                </div> -->
                                             </td>
                                         </tr>
                                         <?php $i++; ?>
