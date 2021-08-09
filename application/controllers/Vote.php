@@ -26,5 +26,7 @@ class Vote extends CI_Controller
 		$this->db->set(['vote_status' => 1, 'waktu_pemilihan' => date('Y-m-d H:i:s')]);
 		$this->db->where('user_id', $user['user_id']);
 		$this->db->update('user_detail');
+		$this->session->set_flashdata('message', 'Terima kasih sudah memilih');
+		redirect('home');
  	}
 }

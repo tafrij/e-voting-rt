@@ -16,12 +16,9 @@
 												<h4 class="card-text text-white"><?= $item['nama']  ?></h4>
 											</div>
 											<div class="mt-2 text-center">
-												<?php if (!$this->session->userdata('nik')) : ?>
-													<button class="btn btn-light shadow-sm" data-toggle="modal" data-target="#voteModal"> <b>VOTE</b> </button>
-												<?php elseif($user['vote_status'] == 1) : ?>
-													<button class="btn btn-light shadow-sm" disabled> <b>VOTE</b> </button>
+												<?php if (!$this->session->userdata('nik') || $user['vote_status'] == 1 ) : ?>
 												<?php else : ?>
-													<a href="<?= base_url('vote-kandidat/') . $item['id']  ?>" class="btn btn-light shadow-sm"> <b>VOTE</b> </a>
+													<a href="<?= base_url('vote-kandidat/') . $item['no_kandidat']  ?>" class="btn btn-light shadow-sm"> <b>VOTE</b> </a>
 												<?php endif; ?>
 											</div>
 										</div>
@@ -29,7 +26,7 @@
 								<?php endforeach; ?>
 							</div>
 						</div>
-						<div class="col-4">tulisan petunjuk pemilihan</div>
+						<div class="col-4">cart batang hasil pemilihan</div>
 					</div>
 				</div>
 			</div>

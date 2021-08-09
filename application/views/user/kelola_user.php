@@ -33,7 +33,7 @@
                                     <th scope="row"><?= $i; ?></th>
                                     <td><?= $item['nik']; ?></td>
                                     <td><?= $item['nama_lengkap']; ?></td>
-                                    <td><?= '00' . $item['rt'] . '/' . '00' . $item['rw']; ?></td>
+                                    <td><?= $item['rt'] . '/' . $item['rw']; ?></td>
                                     <td>
                                         <?php if ($item['vote_status'] == 0) {
                                             echo '<div class="badge badge-danger">Belum Memilih</div>';

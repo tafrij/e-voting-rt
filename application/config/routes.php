@@ -22,3 +22,5 @@ $route['user-login'] = 'Auth/userLogin';
 $route['user-logout'] = 'Auth/userLogout';
 
 $route['vote-kandidat/(:any)'] = 'Vote/voteKandidat/$1';
+
+$route['dashboard'] = 'Dashboard/index';
