@@ -5,6 +5,8 @@ $route['default_controller'] = 'home';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = false;
 
+$route['kelola-laporan'] = 'User/laporan';
+
 $route['kelola-user'] = 'User/kelolaUser';
 $route['detail-user/(:any)'] = 'User/detailUser/$1';
 $route['tambah-user'] = 'User/tambahUser';

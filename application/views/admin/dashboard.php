@@ -22,22 +22,34 @@
                 <!-- Card Header - Dropdown -->
                 <div class="card-header py-3">
                     <h6 class="m-0 font-weight-bold text-primary">Donut Chart</h6>
+
                 </div>
                 <!-- Card Body -->
                 <div class="card-body">
                     <div class="chart-pie pt-4">
                         <canvas id="myPieChart"></canvas>
                     </div>
-                    <hr>
-                    Styling for the donut chart can be found in the <code>/js/demo/chart-pie-demo.js</code> file.
+                    <div class="mt-4 text-center small">
+                        <?php $i = 1;
+                        foreach ($suaras as $item) : ?>
+                            <input type="hidden" value="<?= $item['suara'] ?>" id="<?= 'no_' . $i; ?>">
+                            <input type="hidden" value="<?= $item['nama'] ?>" id="<?= 'nama_' . $i; ?>">
+                            <!-- <p><?= $item['nama']  ?></p> -->
+
+                            <span class="mr-2">
+                                <i class="fas fa-circle text-primary"></i> <?= $item['nama'] ?>
+                            </span>
+                        <?php
+                            $i++;
+                        endforeach; ?>
+
+                    </div>
+                    <!-- <hr>
+                    Styling for the donut chart can be found in the <code>/js/demo/chart-pie-demo.js</code> file. -->
                 </div>
             </div>
         </div>
     </div>
-    <?php $i = 1; ?>
-    <?php foreach($suara as $item): ?>
-        <input type="text" value="<?= $item['suara'] ?>" id="<?= 'no_'. $i++; ?>">
-        <p><?= $item['nama']  ?></p>
-    <?php endforeach; ?>
+
 </div>
 <!-- /.container-fluid -->

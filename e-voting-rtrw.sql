@@ -35,7 +35,7 @@ CREATE TABLE `kandidat` (
   `visi` text NOT NULL,
   `misi` text NOT NULL,
   `image` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `kandidat`
@@ -117,7 +117,7 @@ CREATE TABLE `user_detail` (
   `waktu_pemilihan` datetime DEFAULT NULL,
   `rt` varchar(10) NOT NULL,
   `rw` varchar(10) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `user_detail`
@@ -215,7 +215,7 @@ CREATE TABLE `vote` (
   `user_id` int NOT NULL,
   `pilihan` int NOT NULL,
   `periode` year NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `vote`

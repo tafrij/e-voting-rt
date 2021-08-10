@@ -3,13 +3,22 @@ Chart.defaults.global.defaultFontFamily = 'Nunito', '-apple-system,system-ui,Bli
 Chart.defaults.global.defaultFontColor = '#858796';
 
 // Pie Chart Example
+var no_1 = $('#no_1').val();
+var no_2 = $('#no_2').val();
+
+var nama_1 = $('#nama_1').val();
+var nama_2 = $('#nama_2').val();
+
+var ctx = document.getElementById("myPieChart");
+
+// Pie Chart Example
 var ctx = document.getElementById("myPieChart");
 var myPieChart = new Chart(ctx, {
   type: 'doughnut',
   data: {
-    labels: ["Direct", "Referral", "Social"],
+    labels: [nama_1, nama_2],
     datasets: [{
-      data: [55, 30, 15],
+      data: [no_1, no_2],
       backgroundColor: ['#4e73df', '#1cc88a', '#36b9cc'],
       hoverBackgroundColor: ['#2e59d9', '#17a673', '#2c9faf'],
       hoverBorderColor: "rgba(234, 236, 244, 1)",

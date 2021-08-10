@@ -23,7 +23,9 @@ defined('BASEPATH') or exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = 'http://localhost/e-voting-rt/index.php/';
+// $config['base_url'] = 'http://localhost/e-voting-rt/index.php/';
+$config['base_url'] = "http://" . $_SERVER['HTTP_HOST'];
+$config['base_url'] .= preg_replace('@/+$@', '', dirname($_SERVER['SCRIPT_NAME'])) . '/';
 
 /*
 |--------------------------------------------------------------------------
@@ -136,7 +138,8 @@ $config['subclass_prefix'] = 'MY_';
 | Note: This will NOT disable or override the CodeIgniter-specific
 |	autoloading (application/config/autoload.php)
 */
-$config['composer_autoload'] = false;
+// $config['composer_autoload'] = false;
+$config['composer_autoload'] = 'assets/vendor_mpdf/autoload.php';
 
 /*
 |--------------------------------------------------------------------------

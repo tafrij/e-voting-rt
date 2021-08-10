@@ -31,26 +31,29 @@
       </div>
 
       <!-- Bootstrap core JavaScript-->
-      <script src="<?= 'http://localhost/e-voting-rt/assets/'; ?>vendor/jquery/jquery.min.js"></script>
-      <script src="<?= 'http://localhost/e-voting-rt/assets/'; ?>vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+      <script src="<?= base_url('assets/') ?>vendor/jquery/jquery.min.js"></script>
+      <script src="<?= base_url('assets/') ?>vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
       <!-- Core plugin JavaScript-->
-      <script src="<?= 'http://localhost/e-voting-rt/assets/'; ?>vendor/jquery-easing/jquery.easing.min.js"></script>
+      <script src="<?= base_url('assets/') ?>vendor/jquery-easing/jquery.easing.min.js"></script>
 
       <!-- Custom scripts for all pages-->
-      <script src="<?= 'http://localhost/e-voting-rt/assets/'; ?>js/sb-admin-2.min.js"></script>
+      <script src="<?= base_url('assets/') ?>js/sb-admin-2.min.js"></script>
 
       <!-- Page level plugins -->
-      <script src="<?= 'http://localhost/e-voting-rt/assets/'; ?>vendor/chart.js/Chart.min.js"></script>
+      <script src="<?= base_url('assets/') ?>vendor/chart.js/Chart.min.js"></script>
 
       <!-- Page level custom scripts -->
-      <!-- <script src="<?= 'http://localhost/e-voting-rt/assets/'; ?>js/demo/chart-area-demo.js"></script>
-      <script src="<?= 'http://localhost/e-voting-rt/assets/'; ?>js/demo/chart-pie-demo.js"></script>
-      <script src="<?= 'http://localhost/e-voting-rt/assets/'; ?>js/demo/chart-bar-demo.js"></script> -->
+      <!-- <script src="<?= base_url('assets/') ?>js/demo/chart-area-demo.js"></script> -->
+      <script src="<?= base_url('assets/') ?>js/demo/chart-pie-demo.js"></script>
+
       <script>
           $(document).ready(function() {
               var no_1 = $('#no_1').val();
               var no_2 = $('#no_2').val();
+              var nama_1 = $('#nama_1').val();
+              var nama_2 = $('#nama_2').val();
+
               // Set new default font family and font color to mimic Bootstrap's default styling
               Chart.defaults.global.defaultFontFamily = 'Nunito', '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
               Chart.defaults.global.defaultFontColor = '#858796';
@@ -85,7 +88,7 @@
               var myBarChart = new Chart(ctx, {
                   type: 'bar',
                   data: {
-                      labels: ["No 1", "No 2"],
+                      labels: [nama_1, nama_2],
                       datasets: [{
                           label: "Suara",
                           backgroundColor: "#4e73df",
@@ -156,7 +159,7 @@
                           callbacks: {
                               label: function(tooltipItem, chart) {
                                   var datasetLabel = chart.datasets[tooltipItem.datasetIndex].label || '';
-                                  return datasetLabel + ': $' + number_format(tooltipItem.yLabel);
+                                  return datasetLabel + ': ' + number_format(tooltipItem.yLabel);
                               }
                           }
                       },

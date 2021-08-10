@@ -353,4 +353,17 @@ class User extends CI_Controller
           </button></div>');
         redirect('kandidat');
     }
+
+    public function laporan()
+    {
+        $mpdf = new \Mpdf\Mpdf();
+        $result = $this->db->query("SELECT * FROM kandidat")->result();
+        $data = [
+            "data_materi" => $result,
+            "title" => "Laporan Hasil Suara",
+        ];
+        $html = $this->load->view('cetak/cetak_pelanggaran', $data, true);
+        $mpdf->WriteHTML($html);
+        $mpdf->Output();
+    }
 }
