@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.5deb2
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost:3306
--- Generation Time: Aug 09, 2021 at 11:11 PM
--- Server version: 8.0.26-0ubuntu0.20.04.2
--- PHP Version: 7.2.34-23+ubuntu20.04.1+deb.sury.org+1
+-- Host: localhost
+-- Generation Time: Aug 11, 2021 at 01:34 PM
+-- Server version: 10.4.20-MariaDB
+-- PHP Version: 8.0.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -19,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `e-voting-rtrw`
+-- Database: `sim-evoting`
 --
 
 -- --------------------------------------------------------
@@ -29,13 +28,13 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `kandidat` (
-  `id` int NOT NULL,
-  `no_kandidat` int NOT NULL,
+  `id` int(11) NOT NULL,
+  `no_kandidat` int(11) NOT NULL,
   `nama` varchar(200) NOT NULL,
   `visi` text NOT NULL,
   `misi` text NOT NULL,
   `image` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `kandidat`
@@ -52,13 +51,13 @@ INSERT INTO `kandidat` (`id`, `no_kandidat`, `nama`, `visi`, `misi`, `image`) VA
 --
 
 CREATE TABLE `user` (
-  `id` int NOT NULL,
-  `name` varchar(128) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
-  `username` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `id` int(11) NOT NULL,
+  `name` varchar(128) DEFAULT NULL,
+  `username` varchar(100) DEFAULT NULL,
   `image` varchar(128) NOT NULL,
-  `password` varchar(256) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
-  `role_id` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+  `password` varchar(256) DEFAULT NULL,
+  `role_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `user`
@@ -84,10 +83,10 @@ INSERT INTO `user` (`id`, `name`, `username`, `image`, `password`, `role_id`) VA
 --
 
 CREATE TABLE `user_access_menu` (
-  `id` int NOT NULL,
-  `role_id` int NOT NULL,
-  `menu_id` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+  `id` int(11) NOT NULL,
+  `role_id` int(11) NOT NULL,
+  `menu_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `user_access_menu`
@@ -106,33 +105,33 @@ INSERT INTO `user_access_menu` (`id`, `role_id`, `menu_id`) VALUES
 --
 
 CREATE TABLE `user_detail` (
-  `user_id` int NOT NULL,
-  `nik` int NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `nik` int(11) NOT NULL,
   `nama_lengkap` varchar(100) NOT NULL,
   `ttl` varchar(100) NOT NULL,
   `jenis_kelamin` varchar(30) NOT NULL,
   `alamat` text NOT NULL,
   `pekerjaan` varchar(100) NOT NULL,
-  `vote_status` int DEFAULT '0',
+  `vote_status` int(11) DEFAULT 0,
   `waktu_pemilihan` datetime DEFAULT NULL,
   `rt` varchar(10) NOT NULL,
   `rw` varchar(10) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `user_detail`
 --
 
 INSERT INTO `user_detail` (`user_id`, `nik`, `nama_lengkap`, `ttl`, `jenis_kelamin`, `alamat`, `pekerjaan`, `vote_status`, `waktu_pemilihan`, `rt`, `rw`) VALUES
-(41, 93, 'Vel libero ea impedi', 'Ut magna earum quibu', 'laki-laki', 'Debitis quia qui har', 'Facere consequatur ', 1, NULL, '66', '43'),
+(41, 93, 'Vel libero ea impedi', 'Ut magna earum quibu', 'laki-laki', 'Debitis quia qui har', 'Facere consequatur ', 0, NULL, '66', '43'),
 (42, 98, 'Dolores ad eos nost', 'Asperiores et labore', 'laki-laki', 'Ea ut quos voluptate', 'Illo non cillum even', 1, '2021-08-08 21:35:32', '16', '19'),
-(44, 78, 'Consequuntur aut omn', 'Ut ut et placeat ve', 'perempuan', 'Cumque neque ad prae', 'Aliqua Aut quis ull', 1, NULL, '20', '58'),
+(44, 78, 'Consequuntur aut omn', 'Ut ut et placeat ve', 'perempuan', 'Cumque neque ad prae', 'Aliqua Aut quis ull', 0, NULL, '20', '58'),
 (45, 96, 'Illo exercitation ei', 'Quia consequat Do v', 'perempuan', 'Odio aut ab est nemo', 'Et ullamco lorem dol', 1, '2021-08-09 20:10:55', '1', '4'),
 (46, 89, 'Enim est consequuntu', 'Adipisicing deserunt', 'perempuan', 'Vitae deleniti aliqu', 'Et mollit qui incidu', 1, '2021-08-09 20:09:34', '001', '002'),
 (47, 29, 'Est doloribus ut pro', 'Totam enim nostrum s', 'laki-laki', 'Illo est sapiente i', 'Quas totam dolor fac', 1, '2021-08-09 20:15:45', '38', '25'),
 (48, 38, 'Excepteur voluptates', 'Tempor excepturi ut ', 'perempuan', 'Nostrud qui accusant', 'Tempora et aliquip t', 1, '2021-08-09 20:24:35', '87', '25'),
 (49, 59, 'Repellendus Invento', 'Consequatur In cons', 'laki-laki', 'In qui et amet accu', 'Eius nihil aliqua L', 1, '2021-08-09 21:50:20', '91', '56'),
-(50, 99, 'Vel qui magni iusto ', 'Dolor pariatur Quae', 'perempuan', 'Laborum aut ea aliqu', 'Ullamco est irure re', 1, '2021-08-09 21:52:05', '14', '22');
+(50, 99, 'Vel qui magni iusto ', 'Dolor pariatur Quae', 'perempuan', 'Laborum aut ea aliqu', 'Ullamco est irure re', 0, '2021-08-09 21:52:05', '14', '22');
 
 -- --------------------------------------------------------
 
@@ -141,9 +140,9 @@ INSERT INTO `user_detail` (`user_id`, `nik`, `nama_lengkap`, `ttl`, `jenis_kelam
 --
 
 CREATE TABLE `user_menu` (
-  `id` int NOT NULL,
+  `id` int(11) NOT NULL,
   `menu` varchar(128) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `user_menu`
@@ -161,9 +160,9 @@ INSERT INTO `user_menu` (`id`, `menu`) VALUES
 --
 
 CREATE TABLE `user_role` (
-  `id` int NOT NULL,
+  `id` int(11) NOT NULL,
   `role` varchar(128) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `user_role`
@@ -181,13 +180,13 @@ INSERT INTO `user_role` (`id`, `role`) VALUES
 --
 
 CREATE TABLE `user_sub_menu` (
-  `id` int NOT NULL,
-  `menu_id` int NOT NULL,
+  `id` int(11) NOT NULL,
+  `menu_id` int(11) NOT NULL,
   `title` varchar(128) NOT NULL,
   `url` varchar(128) NOT NULL,
   `icon` varchar(128) NOT NULL,
-  `is_active` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+  `is_active` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `user_sub_menu`
@@ -211,11 +210,11 @@ INSERT INTO `user_sub_menu` (`id`, `menu_id`, `title`, `url`, `icon`, `is_active
 --
 
 CREATE TABLE `vote` (
-  `id` int NOT NULL,
-  `user_id` int NOT NULL,
-  `pilihan` int NOT NULL,
-  `periode` year NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `pilihan` int(11) NOT NULL,
+  `periode` year(4) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `vote`
@@ -283,43 +282,43 @@ ALTER TABLE `vote`
 -- AUTO_INCREMENT for table `kandidat`
 --
 ALTER TABLE `kandidat`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
 
 --
 -- AUTO_INCREMENT for table `user_access_menu`
 --
 ALTER TABLE `user_access_menu`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `user_menu`
 --
 ALTER TABLE `user_menu`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `user_role`
 --
 ALTER TABLE `user_role`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `user_sub_menu`
 --
 ALTER TABLE `user_sub_menu`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `vote`
 --
 ALTER TABLE `vote`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

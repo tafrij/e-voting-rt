@@ -12,7 +12,7 @@
     <!-- <a href="cetak.php" target="_blank" rel="noopener noreferrer">cetak</a> -->
     <table style="text-align: center;" width="100%">
         <tr>
-            <td rowspan="5"><img src="<?= base_url('assets/images/unbaja.png') ?>" width="70" alt=""></td>
+            <td rowspan="5"><img src="<?= base_url('assets/img/logo.png') ?>" width="70" alt=""></td>
         </tr>
         <tr>
             <td style="font-size: 15px; font-weight: bold;">LAPORAN HASIL SUARA</td>
